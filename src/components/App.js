@@ -41,28 +41,22 @@ export default () => {
   return (
     <MuiThemeProvider theme={theme}>
       <Header></Header>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/verify/:value/:id" exact component={Verify} />
-        <Route path="/branches" exact component={Branches} />
-        <Route path="/branches/new" exact component={BranchesCreate} />
-        <Route path="/branches/show/:id" exact component={BranchesShow} />
-        <Route path="/branches/edit/:id" exact component={BranchesEdit} />
-        <Route path="/branches/:id/rooms" exact component={Rooms} />
-        <Route path="/branches/:id/rooms/new" exact component={RoomsCreate} />
-        <Route
-          path="/branches/:id/rooms/edit/:rid"
-          exact
-          component={RoomsEdit}
-        />
-        <Route path="/tenents" exact component={Tenents} />
-        <Route path="/tenents/show/:id" exact component={TenentsShow} />
-        <Route path="/tenents/new" exact component={TenentsCreate} />
-        <Route path="/tenents/edit/:id" exact component={TenentsEdit} />
-        <Route path="/balances" exact component={Balance} />
-      </Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" exact component={Register} />
+      <Route path="/verify/:value/:id" exact component={Verify} />
+      <Route path="/branches" exact component={Branches} />
+      <Route path="/branches/new" exact component={BranchesCreate} />
+      <Route path="/branches/show/:id" exact component={BranchesShow} />
+      <Route path="/branches/edit/:id" exact component={BranchesEdit} />
+      <Route path="/branches/:id/rooms" exact component={Rooms} />
+      <Route path="/branches/:id/rooms/new" exact component={RoomsCreate} />
+      <Route path="/branches/:id/rooms/edit/:rid" exact component={RoomsEdit} />
+      <Route path="/tenents" exact component={Tenents} />
+      <Route path="/tenents/show/:id" exact component={TenentsShow} />
+      <Route path="/tenents/new" exact component={TenentsCreate} />
+      <Route path="/tenents/edit/:id" exact component={TenentsEdit} />
+      <Route path="/balances" exact component={Balance} />
     </MuiThemeProvider>
   )
 }
