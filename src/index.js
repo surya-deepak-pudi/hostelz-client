@@ -6,6 +6,7 @@ import reducers from "./reducers"
 import Thunk from "redux-thunk"
 import jwt_decode from "jwt-decode"
 import setAuthToken from "./api/setAuthToken"
+import { BrowserRouter } from "react-router-dom"
 import { setCurrentUser } from "./actions/authActions"
 import App from "./components/App"
 
@@ -20,7 +21,9 @@ if (localStorage.jwtToken) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter basename="process.env.PUBLIC_URL">
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.querySelector("#root")
 )
