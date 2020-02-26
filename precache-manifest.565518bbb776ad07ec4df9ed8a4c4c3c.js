@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "219ae8b19f8ac6f13a9f80c7c59e2910",
+    "revision": "46eba6043291c1245777102217927f24",
     "url": "/hostelz-client/index.html"
   },
   {
-    "revision": "ef45fc805bc3a999eacb",
-    "url": "/hostelz-client/static/js/2.41eeb031.chunk.js"
+    "revision": "2cc0fe56da3d58bb5ce7",
+    "url": "/hostelz-client/static/js/2.67ebe7aa.chunk.js"
   },
   {
-    "revision": "d28684291b633b5b065a",
-    "url": "/hostelz-client/static/js/main.2eaf7dd5.chunk.js"
+    "revision": "ee6ff3aa2c462b6dcfed",
+    "url": "/hostelz-client/static/js/main.aa503758.chunk.js"
   },
   {
     "revision": "b4cbcaefb7fe1ab6e3f2",
