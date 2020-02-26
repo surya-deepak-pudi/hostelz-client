@@ -86,7 +86,7 @@ class Header extends React.Component {
                 </Button>
                 {console.log(`${balancehref}balances`)}
                 <Button
-                  href={`${balancehref}balances`)}
+                  href={`${balancehref}balances`}
                   color="inherit"
                   style={{ marginLeft: "3px" }}
                 >
