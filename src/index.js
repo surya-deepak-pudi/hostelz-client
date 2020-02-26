@@ -18,6 +18,7 @@ if (localStorage.jwtToken) {
   const decodedToken = jwt_decode(localStorage.jwtToken)
   store.dispatch(setCurrentUser(decodedToken))
 }
+console.log(process.env.PUBLIC_URL)
 
 ReactDOM.render(
   <Provider store={store}>
