@@ -46,7 +46,7 @@ class Header extends React.Component {
   }
   render() {
     console.log({ match: this.props.match, env: process.env.PUBLIC_URL })
-    let balancehref = "/hostelz-client/#/balances"
+    let balancehref = "/hostelz-client/#/"
     return (
       <Fragment>
         <AppBar position="static">
@@ -84,9 +84,9 @@ class Header extends React.Component {
                 >
                   Tenents
                 </Button>
-                {console.log(process.env.PUBLIC_URL + "/#/balances")}
+                {console.log(`${balancehref}balances`)}
                 <Button
-                  href={balancehref}
+                  href={`${balancehref}balances`)}
                   color="inherit"
                   style={{ marginLeft: "3px" }}
                 >
