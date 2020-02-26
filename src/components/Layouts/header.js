@@ -45,6 +45,8 @@ class Header extends React.Component {
     }
   }
   render() {
+    console.log({ match: this.props.match, env: process.env.PUBLIC_URL })
+
     return (
       <Fragment>
         <AppBar position="static">
@@ -69,7 +71,7 @@ class Header extends React.Component {
               </Grid>
               <Grid item>
                 <Button
-                  href="/branches"
+                  href={this.props.match.url + "branches"}
                   color="inherit"
                   style={{ marginLeft: "3px" }}
                 >
