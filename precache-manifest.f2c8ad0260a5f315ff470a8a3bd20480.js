@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b94b2a486db234284ca32ee561ce0e29",
+    "revision": "e38e478d90bad5e6ad16c74724c42be6",
     "url": "/hostelz-client/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hostelz-client/static/js/2.67ebe7aa.chunk.js"
   },
   {
-    "revision": "91e3c5d8d33d4935fa23",
-    "url": "/hostelz-client/static/js/main.573f56d5.chunk.js"
+    "revision": "6a7c5247bb4861a1b8d1",
+    "url": "/hostelz-client/static/js/main.f7b3c8ad.chunk.js"
   },
   {
     "revision": "b4cbcaefb7fe1ab6e3f2",
