@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/hostelz-client/static/js/main.2ea74862.chunk.js",
-    "main.js.map": "/hostelz-client/static/js/main.2ea74862.chunk.js.map",
+    "main.js": "/hostelz-client/static/js/main.e5a09507.chunk.js",
+    "main.js.map": "/hostelz-client/static/js/main.e5a09507.chunk.js.map",
     "runtime-main.js": "/hostelz-client/static/js/runtime-main.62774707.js",
     "runtime-main.js.map": "/hostelz-client/static/js/runtime-main.62774707.js.map",
     "static/js/2.67ebe7aa.chunk.js": "/hostelz-client/static/js/2.67ebe7aa.chunk.js",
     "static/js/2.67ebe7aa.chunk.js.map": "/hostelz-client/static/js/2.67ebe7aa.chunk.js.map",
     "index.html": "/hostelz-client/index.html",
-    "precache-manifest.751e4d253569812aa96c32d208eaecbf.js": "/hostelz-client/precache-manifest.751e4d253569812aa96c32d208eaecbf.js",
+    "precache-manifest.55efebe6b42fba0c2d78ea9895fc8332.js": "/hostelz-client/precache-manifest.55efebe6b42fba0c2d78ea9895fc8332.js",
     "service-worker.js": "/hostelz-client/service-worker.js",
     "static/media/nodata.png": "/hostelz-client/static/media/nodata.8ba65c1e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.62774707.js",
     "static/js/2.67ebe7aa.chunk.js",
-    "static/js/main.2ea74862.chunk.js"
+    "static/js/main.e5a09507.chunk.js"
   ]
 }
