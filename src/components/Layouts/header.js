@@ -84,6 +84,7 @@ class Header extends React.Component {
                 >
                   Tenents
                 </Button>
+                {console.log(process.env.PUBLIC_URL + "/#/balances")}
                 <Button
                   href={process.env.PUBLIC_URL + "/#/balances"}
                   color="inherit"
