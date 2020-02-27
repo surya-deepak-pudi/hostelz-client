@@ -56,4 +56,5 @@ export const logoutUser = history => dispatch => {
   setAuthToken(false)
   dispatch(setCurrentUser({}))
   history.push("/")
+  window.location.reload(true)
 }
