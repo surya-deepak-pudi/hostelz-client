@@ -3,10 +3,10 @@ import { connect } from "react-redux"
 import _ from "lodash"
 import { Typography, Container, Button } from "@material-ui/core"
 import { Spinner } from "../utilities/styledComponents"
-import { fetchBalances, payRent } from "../../actions/TenentsActions"
+import { fetchBalances, payRent } from "../../actions/balancesActions"
 import TenentsList from "../Layouts/tennetsList"
 
-class Tenents extends Component {
+class Balances extends Component {
   componentDidMount() {
     this.props.fetchBalances()
   }
@@ -34,7 +34,7 @@ class Tenents extends Component {
         >
           BALANCES
         </Typography>
-        {!this.props.errors.noRecords && (
+        {!_.isEmpty(this.props.state) && (
           <TenentsList
             fields={["rent", "dues"]}
             buttons={[this.paidButton]}
@@ -52,15 +52,18 @@ class Tenents extends Component {
             </Typography>
           </Fragment>
         )}
+        {!this.props.errors.noRecords && _.isEmpty(this.props.state) && (
+          <Spinner></Spinner>
+        )}
       </Container>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return { tenents: state.tenents, errors: state.errors }
+  return { tenents: state.balances, errors: state.errors.balances }
 }
 export default connect(mapStateToProps, {
   fetchBalances,
   payRent
-})(Tenents)
+})(Balances)

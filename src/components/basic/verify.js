@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react"
+import { Link } from "react-router-dom"
 import { verifyAccount } from "../../actions/authActions"
 import { connect } from "react-redux"
 import { Typography, Button } from "@material-ui/core"
@@ -37,15 +38,16 @@ class Verify extends Component {
             Your mail is successfully verified
           </Typography>
           <br></br>
-          <Button
-            size="large"
-            color="primary"
-            variant="contained"
-            style={{ marginTop: "30px" }}
-            href="/login"
-          >
-            Login
-          </Button>
+          <Link to="/login" style={{ textDecoration: "none", color: "white" }}>
+            <Button
+              size="large"
+              color="primary"
+              variant="contained"
+              style={{ marginTop: "30px" }}
+            >
+              Login
+            </Button>
+          </Link>
         </Fragment>
       )
     }

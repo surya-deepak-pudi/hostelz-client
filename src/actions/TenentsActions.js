@@ -6,7 +6,6 @@ import {
   CREATE_TENENTS,
   NORECORDS
 } from "../actions/actionTypes"
-// import { createRoomsAction } from "./roomsActions"
 import backend from "../api/backendApi"
 
 export const fetchTenents = () => dispatch => {
@@ -46,23 +45,5 @@ export const createTenents = (values, history) => dispatch => {
   backend.post("/tenents", values).then(branches => {
     dispatch({ type: CREATE_TENENTS, payload: branches.data })
     history.goBack()
-  })
-}
-
-export const fetchBalances = () => dispatch => {
-  backend.get("/tenents/balances").then(tenents => {
-    if (tenents.data.length) {
-      dispatch({ type: FETCH_TENENTS, payload: tenents.data })
-    } else {
-      dispatch({ type: NORECORDS, payload: true })
-    }
-  })
-}
-
-export const payRent = id => dispatch => {
-  backend.put(`/tenents/${id}/pay`).then(tenents => {
-    console.log(tenents)
-    dispatch({ type: DELETE_TENENTS, payload: tenents.data })
-    document.location.reload()
   })
 }

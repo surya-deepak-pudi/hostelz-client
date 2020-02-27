@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import {
   Container,
@@ -71,15 +72,19 @@ class ShowTenents extends Component {
               {tenent.gaurdianAddress}
             </Typography>
           </Paper>
-          <Button
-            size="large"
-            color="primary"
-            variant="contained"
-            href="/tenents"
-            style={{ marginTop: "20px" }}
+          <Link
+            to="/tenents"
+            style={{ textDecoration: "none", color: "white" }}
           >
-            Done
-          </Button>
+            <Button
+              size="large"
+              color="primary"
+              variant="contained"
+              style={{ marginTop: "20px" }}
+            >
+              Done
+            </Button>
+          </Link>
         </Container>
       )
     }

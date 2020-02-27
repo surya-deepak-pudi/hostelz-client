@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import _ from "lodash"
 import { Container, Typography, Button } from "@material-ui/core"
@@ -47,15 +48,20 @@ class ShowBranch extends Component {
               delete={this.props.deleteRoomsAction}
               id={this.props.match.params.id}
             ></RenderRooms>
-            <Button
-              size="large"
-              color="primary"
-              variant="contained"
-              href={`/branches/${branches._id}/rooms/new`}
-              style={{ marginTop: "20px" }}
+
+            <Link
+              to={`/branches/${branches._id}/rooms/new`}
+              style={{ textDecoration: "none", color: "white" }}
             >
-              Add new Rooms
-            </Button>
+              <Button
+                size="large"
+                color="primary"
+                variant="contained"
+                style={{ marginTop: "20px" }}
+              >
+                Add new Rooms
+              </Button>
+            </Link>
           </Container>
         </Fragment>
       )

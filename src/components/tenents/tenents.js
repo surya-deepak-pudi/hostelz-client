@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import _ from "lodash"
 import { Typography, Container, Button } from "@material-ui/core"
@@ -11,11 +12,18 @@ import TenentsList from "../Layouts/tennetsList"
 class Tenents extends Component {
   componentDidMount() {
     this.props.fetchTenents(this.props.history)
-    this.props.fetchBranches(["_id", "name"])
+    if (_.isEmpty(this.props.branches)) {
+      this.props.fetchBranches(["_id", "name"])
+    }
   }
   editButton = tenent => {
     return (
-      <YellowButton href={`/tenents/edit/${tenent._id}`}>Edit</YellowButton>
+      <Link
+        to={`/tenents/edit/${tenent._id}`}
+        style={{ textDecoration: "none", color: "white" }}
+      >
+        <YellowButton>Edit</YellowButton>
+      </Link>
     )
   }
   deleteButton = tenent => {
@@ -64,15 +72,19 @@ class Tenents extends Component {
             </Typography>
           </Fragment>
         )}
-        <Button
-          size="large"
-          color="primary"
-          variant="contained"
-          style={{ marginTop: "30px" }}
-          href="/tenents/new"
+        <Link
+          to="/tenents/new"
+          style={{ textDecoration: "none", color: "white" }}
         >
-          Add tenant
-        </Button>
+          <Button
+            size="large"
+            color="primary"
+            variant="contained"
+            style={{ marginTop: "30px" }}
+          >
+            Add tenant
+          </Button>
+        </Link>
       </Container>
     )
   }

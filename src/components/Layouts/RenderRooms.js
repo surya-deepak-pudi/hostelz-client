@@ -1,4 +1,5 @@
 import React, { Fragment } from "react"
+import { Link } from "react-router-dom"
 import { Typography, Divider, Grid } from "@material-ui/core"
 import {
   GreyPaper,
@@ -61,13 +62,15 @@ const RoomRender = props => {
                         </Grid>
                       </Grid>
                       <Grid item>
-                        <YellowButton
-                          variant="contained"
-                          size="small"
-                          href={`/branches/${props.id}/rooms/edit/${room._id}`}
+                        <Link
+                          to={`/branches/${props.id}/rooms/edit/${room._id}`}
+                          style={{ textDecoration: "none", color: "white" }}
                         >
-                          Edit
-                        </YellowButton>
+                          <YellowButton variant="contained" size="small">
+                            Edit
+                          </YellowButton>
+                        </Link>
+
                         <DeleteButton
                           onClickMethod={() => {
                             this.props.delete(this.props.id, room._id)

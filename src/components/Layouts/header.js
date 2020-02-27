@@ -38,15 +38,14 @@ class Header extends React.Component {
       )
     } else {
       return (
-        <Button href="/login" color="inherit">
-          Login
-        </Button>
+        <Link to="/login" style={{ textDecoration: "none", color: "white" }}>
+          <Button color="inherit">Login</Button>
+        </Link>
       )
     }
   }
   render() {
     console.log({ match: this.props.match, env: process.env.PUBLIC_URL })
-    let hrefurl = "/hostelz-client/#/"
     return (
       <Fragment>
         <AppBar position="static">
@@ -55,14 +54,18 @@ class Header extends React.Component {
               <Grid item>
                 <Grid container justify="flex-start" alignItems="center">
                   <Grid item>
-                    <IconButton
-                      edge="start"
-                      color="inherit"
-                      aria-label="menu"
-                      href="/"
+                    <Link
+                      to="/"
+                      style={{ textDecoration: "none", color: "white" }}
                     >
-                      <MenuIcon />
-                    </IconButton>
+                      <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                      >
+                        <MenuIcon />
+                      </IconButton>
+                    </Link>
                   </Grid>
                   <Grid item>
                     <Typography variant="h6">Hostel Name</Typography>
@@ -70,25 +73,30 @@ class Header extends React.Component {
                 </Grid>
               </Grid>
               <Grid item>
-                <Button
-                  href={this.props.match.url + "branches"}
-                  color="inherit"
-                  style={{ marginLeft: "3px" }}
+                <Link
+                  to="/branches"
+                  style={{ textDecoration: "none", color: "white" }}
                 >
-                  Branches
-                </Button>
-                <Link to="/tenents">
+                  <Button color="inherit" style={{ marginLeft: "3px" }}>
+                    Branches
+                  </Button>
+                </Link>
+                <Link
+                  to="/tenents"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   <Button color="inherit" style={{ marginLeft: "3px" }}>
                     Tenents
                   </Button>
                 </Link>
-                <Button
-                  href={`${hrefurl}balances`}
-                  color="inherit"
-                  style={{ marginLeft: "3px" }}
+                <Link
+                  to="/balances"
+                  style={{ textDecoration: "none", color: "white" }}
                 >
-                  Balance
-                </Button>
+                  <Button color="inherit" style={{ marginLeft: "3px" }}>
+                    Balance
+                  </Button>
+                </Link>
                 {this.buttonRender()}
               </Grid>
             </Grid>

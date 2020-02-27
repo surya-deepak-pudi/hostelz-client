@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { Container, Typography, Button, Grid } from "@material-ui/core"
 import _ from "lodash"
@@ -69,13 +70,14 @@ class RoomsCreate extends Component {
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <YellowButton
-                          variant="contained"
-                          size="small"
-                          href={`/branches/${this.props.match.params.id}/rooms/edit/${room._id}`}
+                        <Link
+                          to={`/branches/${this.props.match.params.id}/rooms/edit/${room._id}`}
+                          style={{ textDecoration: "none", color: "white" }}
                         >
-                          Edit
-                        </YellowButton>
+                          <YellowButton variant="contained" size="small">
+                            Edit
+                          </YellowButton>
+                        </Link>
                         <DeleteButton
                           onClickMethod={() => {
                             this.props.deleteRoomsAction(
@@ -116,14 +118,14 @@ class RoomsCreate extends Component {
         !_.isEmpty(this.props.rooms)
       ) {
         return (
-          <Button
-            size="large"
-            color="primary"
-            variant="contained"
-            href="/branches"
+          <Link
+            to="/branches"
+            style={{ textDecoration: "none", color: "white" }}
           >
-            Done!
-          </Button>
+            <Button size="large" color="primary" variant="contained">
+              Done!
+            </Button>
+          </Link>
         )
       } else {
         return null

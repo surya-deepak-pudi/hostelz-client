@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react"
 import { connect } from "react-redux"
 import { Container, Typography, Grid, Button } from "@material-ui/core"
+import { Link } from "react-router-dom"
 import { Spinner } from "../utilities/styledComponents"
 import { fetchBranches, deleteBranches } from "../../actions/branchesActions"
 import RenderCard from "../Layouts/branchCard"
@@ -53,15 +54,19 @@ class Branches extends Component {
               </Grid>
             )}
           </Fragment>
-          <Button
-            color="primary"
-            size="large"
-            variant="contained"
-            style={{ marginTop: "30px" }}
-            href="branches/new"
+          <Link
+            to="/branches/new"
+            style={{ textDecoration: "none", color: "white" }}
           >
-            Create New
-          </Button>
+            <Button
+              color="primary"
+              size="large"
+              variant="contained"
+              style={{ marginTop: "30px" }}
+            >
+              Create New
+            </Button>
+          </Link>
         </Container>
       </Fragment>
     )

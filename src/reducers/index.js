@@ -5,6 +5,7 @@ import roomReducer from "./roomReducer"
 import tenentsReducer from "./tenentsReducer"
 import errorReducer from "./errorReducer"
 import authReducer from "./authReducer"
+import balancesReducer from "./balancesReducer"
 
 export default combineReducers({
   form: formReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   rooms: roomReducer,
   tenents: tenentsReducer,
   errors: errorReducer,
-  auth: authReducer
+  auth: authReducer,
+  blances: balancesReducer
 })
