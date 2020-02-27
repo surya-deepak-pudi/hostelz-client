@@ -8,7 +8,7 @@ import {
   Grid,
   Paper
 } from "@material-ui/core"
-import { withRouter } from "react-router-dom"
+import { withRouter, Link } from "react-router-dom"
 import { connect } from "react-redux"
 import MenuIcon from "@material-ui/icons/Menu"
 import { logoutUser } from "../../actions/authActions"
@@ -46,7 +46,7 @@ class Header extends React.Component {
   }
   render() {
     console.log({ match: this.props.match, env: process.env.PUBLIC_URL })
-    let balancehref = "/hostelz-client/#/"
+    let hrefurl = "/hostelz-client/#/"
     return (
       <Fragment>
         <AppBar position="static">
@@ -77,16 +77,13 @@ class Header extends React.Component {
                 >
                   Branches
                 </Button>
+                <Link to="/tenents">
+                  <Button color="inherit" style={{ marginLeft: "3px" }}>
+                    Tenents
+                  </Button>
+                </Link>
                 <Button
-                  href="/tenents"
-                  color="inherit"
-                  style={{ marginLeft: "3px" }}
-                >
-                  Tenents
-                </Button>
-                {console.log(`${balancehref}balances`)}
-                <Button
-                  href={`${balancehref}balances`}
+                  href={`${hrefurl}balances`}
                   color="inherit"
                   style={{ marginLeft: "3px" }}
                 >
