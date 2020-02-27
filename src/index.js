@@ -6,7 +6,7 @@ import reducers from "./reducers"
 import Thunk from "redux-thunk"
 import jwt_decode from "jwt-decode"
 import setAuthToken from "./api/setAuthToken"
-import { HashRouter } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import { setCurrentUser } from "./actions/authActions"
 import App from "./components/App"
 
@@ -22,9 +22,9 @@ console.log(process.env.PUBLIC_URL)
 
 ReactDOM.render(
   <Provider store={store}>
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </Provider>,
   document.querySelector("#root")
 )
