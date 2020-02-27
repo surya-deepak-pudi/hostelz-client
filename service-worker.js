@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hostelz-client/precache-manifest.4e39da0c899e5a51d257c4f699178127.js"
+  "/hostelz-client/precache-manifest.c9e3ba59fc21db2cedfb184bcf2862ec.js"
 );
 
 self.addEventListener('message', (event) => {
