@@ -14,10 +14,11 @@ class Branches extends Component {
   }
   render() {
     const { deleteBranches, branches, errors, spinner } = this.props
-    let branchesValues = Object.values(branches)
-    let isLoading = !errors.error && spinner && branchesValues.length === 0
-    let showRecords = !errors.error && !spinner && branchesValues.length > 0
-    let noRecords = !errors.error && !spinner && branchesValues.length === 0
+    let records = Object.values(branches)
+    console.log(records)
+    let isLoading = !errors.error && spinner && records.length === 0
+    let showRecords = !errors.error && !spinner && records.length > 0
+    let noRecords = !errors.error && !spinner && records.length === 0
     let showErrors = errors.error
     return (
       <Fragment>
@@ -40,7 +41,7 @@ class Branches extends Component {
                 {showRecords && (
                   <Fragment>
                     <Grid container alignItems="center" spacing={2}>
-                      {branchesValues.map(branch => {
+                      {records.map(branch => {
                         return (
                           <Grid item key={branches._id} xs={12} sm={3} md={4}>
                             <RenderCard

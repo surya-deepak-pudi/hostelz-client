@@ -5,8 +5,8 @@ import img from "../../assets/nodata.png"
 export default props => {
   return (
     <Container align="center">
-      <img alt="no rooms added" src={img}></img>
-      <Typography component="h1" variant="h3" style={{ marginTop: "10px" }}>
+      <img alt="no rooms added" src={img} height="314" width="314"></img>
+      <Typography variant="subtitle1" style={{ marginTop: "10px" }}>
         {props.message}
       </Typography>
     </Container>

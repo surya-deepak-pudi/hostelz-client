@@ -81,58 +81,56 @@ class Pagination extends Component {
   render() {
     console.log(this.props.totalRecords)
     return (
-      <Container maxWidth="md" align="center">
-        <Grid container>
-          <Grid item>
-            <Button
-              color="primary"
-              onClick={e => {
-                this.props.buttonClicked(1)
-              }}
-            >
-              <FirstPage />
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              color="primary"
-              onClick={e => {
-                if (this.props.currentPage !== 1) {
-                  this.props.buttonClicked(this.props.currentPage - 1)
-                  this.setState({ currentPage: this.props.currentPage - 1 })
-                }
-              }}
-            >
-              <NavigateBefore />
-            </Button>
-          </Grid>
-          {this.pagesRender()}
-          <Grid item>
-            <Button
-              color="primary"
-              onClick={e => {
-                if (this.props.currentPage !== this.props.totalPages) {
-                  this.props.buttonClicked(this.props.currentPage + 1)
-                  this.setState({ currentPage: this.props.currentPage + 1 })
-                }
-              }}
-            >
-              <NavigateNext />
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              color="primary"
-              onClick={e => {
-                this.props.buttonClicked(this.props.totalPages)
-                this.setState({ currentPage: this.props.totalPages })
-              }}
-            >
-              <LastPage />
-            </Button>
-          </Grid>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Grid item>
+          <Button
+            color="primary"
+            onClick={e => {
+              this.props.buttonClicked(1)
+            }}
+          >
+            <FirstPage />
+          </Button>
         </Grid>
-      </Container>
+        <Grid item>
+          <Button
+            color="primary"
+            onClick={e => {
+              if (this.props.currentPage !== 1) {
+                this.props.buttonClicked(this.props.currentPage - 1)
+                this.setState({ currentPage: this.props.currentPage - 1 })
+              }
+            }}
+          >
+            <NavigateBefore />
+          </Button>
+        </Grid>
+        {this.pagesRender()}
+        <Grid item>
+          <Button
+            color="primary"
+            onClick={e => {
+              if (this.props.currentPage !== this.props.totalPages) {
+                this.props.buttonClicked(this.props.currentPage + 1)
+                this.setState({ currentPage: this.props.currentPage + 1 })
+              }
+            }}
+          >
+            <NavigateNext />
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            color="primary"
+            onClick={e => {
+              this.props.buttonClicked(this.props.totalPages)
+              this.setState({ currentPage: this.props.totalPages })
+            }}
+          >
+            <LastPage />
+          </Button>
+        </Grid>
+      </Grid>
     )
   }
 }

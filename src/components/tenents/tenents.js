@@ -8,6 +8,9 @@ import { DeleteButton } from "../utilities/FieldComponets"
 import { fetchTenents, deleteTenents } from "../../actions/TenentsActions"
 import { fetchBranches } from "../../actions/branchesActions"
 import TenentsList from "../Layouts/tennetsList"
+import NoRecords from "../Layouts/NoRecords"
+import Error from "../Layouts/Error"
+import { Spinner } from "../utilities/styledComponents"
 
 class Tenents extends Component {
   componentDidMount() {
@@ -40,52 +43,56 @@ class Tenents extends Component {
   }
   render() {
     let buttonArray = []
-    buttonArray[0] = this.editButton
-    buttonArray[1] = this.deleteButton
+    buttonArray.push(this.editButton)
+    buttonArray.push(this.deleteButton)
+    const { tenents, errors, spinner } = this.props
+    let records = Object.values(tenents)
+    let showSpinner = !errors.error && spinner && records.length === 0
+    let showRecords = !errors.error && !spinner && records.length > 0
+    let noRecords = !errors.error && !spinner && records.length === 0
+    let showErrors = errors.error
     return (
-      <Container maxWidth="md" align="center">
-        <Typography
-          // color="primary"
-          variant="h4"
-          component="h3"
-          style={{ marginTop: "20px", marginBottom: "5px" }}
-        >
-          Tenants
-        </Typography>
-        {!this.props.errors.noRecords && (
-          <Fragment>
-            <TenentsList
-              tenents={this.props.tenents}
-              branches={this.props.branches}
-              buttons={buttonArray}
-            ></TenentsList>
-          </Fragment>
-        )}
-        {this.props.errors.noRecords && (
-          <Fragment>
+      <Fragment>
+        {showErrors && <Error></Error>}
+        {!showErrors && (
+          <Container maxWidth="md" align="center">
             <Typography
-              component="h1"
-              variant="h3"
-              style={{ marginTop: "150px", marginBottom: "150px" }}
+              // color="primary"
+              variant="h4"
+              component="h3"
+              style={{ marginTop: "20px", marginBottom: "5px" }}
             >
-              NO TENENTS ADDED
+              Tenants
             </Typography>
-          </Fragment>
+            {showSpinner && <Spinner></Spinner>}
+            {showRecords && (
+              <Fragment>
+                <TenentsList
+                  tenents={this.props.tenents}
+                  branches={this.props.branches}
+                  buttons={buttonArray}
+                ></TenentsList>
+              </Fragment>
+            )}
+            {noRecords && <NoRecords message="no tenants exist"></NoRecords>}
+            {!spinner && (
+              <Link
+                to="/tenents/new"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <Button
+                  size="large"
+                  color="primary"
+                  variant="contained"
+                  style={{ marginTop: "30px" }}
+                >
+                  Add tenant
+                </Button>
+              </Link>
+            )}
+          </Container>
         )}
-        <Link
-          to="/tenents/new"
-          style={{ textDecoration: "none", color: "white" }}
-        >
-          <Button
-            size="large"
-            color="primary"
-            variant="contained"
-            style={{ marginTop: "30px" }}
-          >
-            Add tenant
-          </Button>
-        </Link>
-      </Container>
+      </Fragment>
     )
   }
 }
@@ -94,7 +101,8 @@ const mapStateToProps = state => {
   return {
     branches: state.branches,
     tenents: state.tenents,
-    errors: state.errors
+    errors: state.errors,
+    spinner: state.spinner
   }
 }
 export default connect(mapStateToProps, {

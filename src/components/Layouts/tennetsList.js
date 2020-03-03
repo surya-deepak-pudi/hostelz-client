@@ -8,7 +8,8 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   Divider,
-  Avatar
+  Avatar,
+  Container
 } from "@material-ui/core"
 import { Link } from "react-router-dom"
 import { Spinner } from "../utilities/styledComponents"
@@ -17,7 +18,7 @@ import Pagination from "../utilities/Pagination"
 class Tenents extends Component {
   constructor(props) {
     super(props)
-    this.perPage = 1
+    this.perPage = 10
     this.state = {
       currentPage: 1,
       noTenents: Object.keys(props.tenents).length
@@ -70,7 +71,7 @@ class Tenents extends Component {
   renderContent = () => {
     let tenents = this.paginatedTenents()
     return (
-      <Fragment>
+      <Container align="center">
         <List>
           {tenents.map(tenent => {
             return (
@@ -129,7 +130,7 @@ class Tenents extends Component {
             this.handleChange(cp)
           }}
         />
-      </Fragment>
+      </Container>
     )
   }
   render() {

@@ -7,6 +7,7 @@ export const fetchBalances = () => dispatch => {
   backend
     .get("/tenents/balances")
     .then(tenents => {
+      console.log(tenents)
       dispatch({ type: FETCH_BALANCES, payload: tenents.data })
       stopSpinningAction()
     })

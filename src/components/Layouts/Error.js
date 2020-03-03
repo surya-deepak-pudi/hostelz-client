@@ -5,10 +5,8 @@ import img from "../../assets/maintainence.png"
 export default props => {
   return (
     <Container align="center">
-      <img alt="no rooms added" src={img}></img>
-      <Typography component="h1" variant="h3" style={{ marginTop: "10px" }}>
-        {props.message}
-      </Typography>
+      <img alt="no records" src={img}></img>
+      <Typography variant="subtitle1"> {props.messsag}</Typography>
     </Container>
   )
 }

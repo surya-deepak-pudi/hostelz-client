@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react"
 import { connect } from "react-redux"
-import _ from "lodash"
 import { Typography, Container, Button } from "@material-ui/core"
 import { Spinner } from "../utilities/styledComponents"
 import { fetchBalances, payRent } from "../../actions/balancesActions"
 import TenentsList from "../Layouts/tennetsList"
+import NoPayments from "../Layouts/NoPayments"
+import Error from "../Layouts/Error"
 
 class Balances extends Component {
   componentDidMount() {
@@ -24,36 +25,41 @@ class Balances extends Component {
     )
   }
   render() {
+    const { tenents, errors, spinner } = this.props
+    console.log(tenents)
+    console.log(typeof tenents)
+    let records = []
+    let showSpinner = !errors.error && spinner && records.length === 0
+    let showRecords = !errors.error && !spinner && records.length > 0
+    let noRecords = !errors.error && !spinner && records.length === 0
+    let showErrors = errors.error
     return (
-      <Container maxWidth="md" align="center">
-        <Typography
-          // color="primary"
-          variant="h4"
-          component="h3"
-          style={{ marginTop: "20px", marginBottom: "5px" }}
-        >
-          BALANCES
-        </Typography>
-        {!_.isEmpty(this.props.state) && (
-          <TenentsList
-            fields={["rent", "dues"]}
-            buttons={[this.paidButton]}
-            tenents={this.props.tenents}
-          />
-        )}
-        {!this.props.spinner.isSpinning && _.isEmpty(this.props.state) && (
-          <Fragment>
+      <Fragment>
+        {showErrors && <Error></Error>}
+        {!showErrors && (
+          <Container maxWidth="md" align="center">
             <Typography
-              component="h1"
-              variant="h3"
-              style={{ marginTop: "150px", marginBottom: "150px" }}
+              // color="primary"
+              variant="h4"
+              component="h3"
+              style={{ marginTop: "20px", marginBottom: "5px" }}
             >
-              {"NO PAYMENTS TO BE RECIEVED"}
+              BALANCES
             </Typography>
-          </Fragment>
+            {showSpinner && <Spinner></Spinner>}
+            {noRecords && (
+              <NoPayments message="no payments to be recieved"></NoPayments>
+            )}
+            {showRecords && (
+              <TenentsList
+                fields={["rent", "dues"]}
+                buttons={[this.paidButton]}
+                tenents={tenents}
+              />
+            )}
+          </Container>
         )}
-        {this.props.spinner.isSpinner && <Spinner></Spinner>}
-      </Container>
+      </Fragment>
     )
   }
 }
@@ -61,7 +67,7 @@ class Balances extends Component {
 const mapStateToProps = state => {
   return {
     tenents: state.balances,
-    errors: state.errors.balances,
+    errors: state.errors,
     spinner: state.spinner
   }
 }
