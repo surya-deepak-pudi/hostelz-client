@@ -155,11 +155,6 @@ export const VerticalAlignGrid = withStyles({
 
 export const Spinner = () => {
   return (
-    <Container
-      align="center"
-      style={{ marginTop: "150px", marginBottom: "150px" }}
-    >
-      <CircularProgress />
-    </Container>
+    <CircularProgress style={{ position: "fixed", top: "50%", left: "50%" }} />
   )
 }

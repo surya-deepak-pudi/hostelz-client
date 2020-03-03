@@ -5,26 +5,9 @@ import { Container, Typography, Button, Paper } from "@material-ui/core"
 import { TextFieldComponent } from "../utilities/FieldComponets"
 import { connect } from "react-redux"
 import { loginUser } from "../../actions/authActions"
+import RenderAlert from "../utilities/RenderAlert"
 
 class Login extends Component {
-  renderAlert = data => {
-    return (
-      <Paper
-        style={{
-          color: "black",
-          backgroundColor: "#ffcdd2",
-          width: "420px",
-          marginRight: "7px",
-          marginBottom: "20px",
-          padding: "5px"
-        }}
-      >
-        <Typography variant="subtitle1" component="h3">
-          {data}
-        </Typography>
-      </Paper>
-    )
-  }
   render() {
     return (
       <Fragment>
@@ -37,7 +20,12 @@ class Login extends Component {
           >
             Login
           </Typography>
-          {this.props.errors.msg && this.renderAlert(this.props.errors.msg)}
+          {this.props.location.redirect && (
+            <RenderAlert data="Please Login to continue"></RenderAlert>
+          )}
+          {this.props.errors.msg && (
+            <RenderAlert data={this.props.errors.msg}></RenderAlert>
+          )}
           <form
             onSubmit={this.props.handleSubmit(formValues => {
               this.props.loginUser(formValues, this.props.history)

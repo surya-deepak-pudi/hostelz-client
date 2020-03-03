@@ -14,17 +14,6 @@ import MenuIcon from "@material-ui/icons/Menu"
 import { logoutUser } from "../../actions/authActions"
 
 class Header extends React.Component {
-  componentDidMount() {
-    // console.log(this.props.location.pathname)
-    if (
-      !this.props.auth.isAuthenticated &&
-      this.props.location.pathname !== "/login" &&
-      this.props.location.pathname !== "/register" &&
-      this.props.location.pathname.slice(0, 8) !== "/verify/"
-    ) {
-      this.props.history.push("/")
-    }
-  }
   buttonRender = () => {
     if (this.props.auth.isAuthenticated) {
       return (

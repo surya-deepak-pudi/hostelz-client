@@ -41,7 +41,7 @@ class Balances extends Component {
             tenents={this.props.tenents}
           />
         )}
-        {this.props.errors.noRecords && (
+        {!this.props.spinner.isSpinning && _.isEmpty(this.props.state) && (
           <Fragment>
             <Typography
               component="h1"
@@ -52,16 +52,18 @@ class Balances extends Component {
             </Typography>
           </Fragment>
         )}
-        {!this.props.errors.noRecords && _.isEmpty(this.props.state) && (
-          <Spinner></Spinner>
-        )}
+        {this.props.spinner.isSpinner && <Spinner></Spinner>}
       </Container>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return { tenents: state.balances, errors: state.errors.balances }
+  return {
+    tenents: state.balances,
+    errors: state.errors.balances,
+    spinner: state.spinner
+  }
 }
 export default connect(mapStateToProps, {
   fetchBalances,

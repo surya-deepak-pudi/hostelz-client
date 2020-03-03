@@ -11,7 +11,7 @@ import { showBranches } from "../../actions/branchesActions"
 import RoomForm from "../Layouts/roomForm"
 import { GreyPaper, YellowButton } from "../utilities/styledComponents"
 import { DeleteButton } from "../utilities/FieldComponets"
-import img from "../../nodata.png"
+import img from "../../assets/nodata.png"
 
 //  rooms Create
 

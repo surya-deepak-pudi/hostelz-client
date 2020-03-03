@@ -1,19 +1,35 @@
-import { FETCH_BALANCES, PAID_RENT, NORECORDS_BALANCES } from "./actionTypes"
+import { FETCH_BALANCES, PAID_RENT, ERROR } from "./actionTypes"
+import { startSpinningAction, stopSpinningAction } from "./spinActions"
 import backend from "../api/backendApi"
 
 export const fetchBalances = () => dispatch => {
-  backend.get("/tenents/balances").then(tenents => {
-    if (tenents.data.length) {
+  startSpinningAction()
+  backend
+    .get("/tenents/balances")
+    .then(tenents => {
       dispatch({ type: FETCH_BALANCES, payload: tenents.data })
-    } else {
-      dispatch({ type: NORECORDS_BALANCES, payload: true })
-    }
-  })
+      stopSpinningAction()
+    })
+    .catch(err => {
+      if (err) {
+        dispatch({ type: ERROR, payload: true })
+        stopSpinningAction()
+      }
+    })
 }
 
 export const payRent = id => dispatch => {
-  backend.put(`/tenents/${id}/pay`).then(tenents => {
-    console.log(tenents)
-    dispatch({ type: PAID_RENT, payload: tenents.data })
-  })
+  startSpinningAction()
+  backend
+    .put(`/tenents/${id}/pay`)
+    .then(tenents => {
+      dispatch({ type: PAID_RENT, payload: tenents.data })
+      startSpinningAction()
+    })
+    .catch(err => {
+      if (err) {
+        dispatch({ type: ERROR, payload: true })
+        stopSpinningAction()
+      }
+    })
 }

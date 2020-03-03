@@ -18,6 +18,7 @@ import TenentsCreate from "./tenents/tenentsCreate"
 import Rooms from "./rooms/rooms"
 import RoomsCreate from "./rooms/roomsCreate"
 import RoomsEdit from "./rooms/roomsEdit"
+import PrivateRoute from "./utilities/PrivateRoute"
 // "#006064"-aqaua-#e0f7fa
 //"#01579b"-blue-
 const theme = createMuiTheme({
@@ -46,22 +47,34 @@ export default () => {
         <Route path="/login" component={Login} />
         <Route path="/register" exact component={Register} />
         <Route path="/verify/:value/:id" exact component={Verify} />
-        <Route path="/branches" exact component={Branches} />
-        <Route path="/branches/new" exact component={BranchesCreate} />
-        <Route path="/branches/show/:id" exact component={BranchesShow} />
-        <Route path="/branches/edit/:id" exact component={BranchesEdit} />
-        <Route path="/branches/:id/rooms" exact component={Rooms} />
-        <Route path="/branches/:id/rooms/new" exact component={RoomsCreate} />
-        <Route
+        <PrivateRoute path="/branches" exact component={Branches} />
+        <PrivateRoute path="/branches/new" exact component={BranchesCreate} />
+        <PrivateRoute
+          path="/branches/show/:id"
+          exact
+          component={BranchesShow}
+        />
+        <PrivateRoute
+          path="/branches/edit/:id"
+          exact
+          component={BranchesEdit}
+        />
+        <PrivateRoute path="/branches/:id/rooms" exact component={Rooms} />
+        <PrivateRoute
+          path="/branches/:id/rooms/new"
+          exact
+          component={RoomsCreate}
+        />
+        <PrivateRoute
           path="/branches/:id/rooms/edit/:rid"
           exact
           component={RoomsEdit}
         />
-        <Route path="/tenents" exact component={Tenents} />
-        <Route path="/tenents/show/:id" exact component={TenentsShow} />
-        <Route path="/tenents/new" exact component={TenentsCreate} />
-        <Route path="/tenents/edit/:id" exact component={TenentsEdit} />
-        <Route path="/balances" exact component={Balance} />
+        <PrivateRoute path="/tenents" exact component={Tenents} />
+        <PrivateRoute path="/tenents/show/:id" exact component={TenentsShow} />
+        <PrivateRoute path="/tenents/new" exact component={TenentsCreate} />
+        <PrivateRoute path="/tenents/edit/:id" exact component={TenentsEdit} />
+        <PrivateRoute path="/balances" exact component={Balance} />
       </Switch>
     </MuiThemeProvider>
   )

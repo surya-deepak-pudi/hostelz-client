@@ -4,68 +4,84 @@ import {
   UPDATE_BRANCH,
   DELETE_BRANCH,
   CREATE_BRANCH,
-  UNAUTHORIZED,
-  NORECORDS
+  ERROR,
+  IS_SPINNING,
+  NOT_SPINNING
 } from "./actionTypes"
 // import { createRoomsAction } from "./roomsActions"
+import { startSpinningAction, stopSpinningAction } from "./spinActions"
 import backend from "../api/backendApi"
 import history from "../history"
+import { urlEncoder } from "../utilities"
 
-export const fetchBranches = (fields = []) => dispatch => {
-  let str = ""
-  if (fields.length) {
-    str = "?properties=" + fields.join(",")
-  }
+export const fetchBranches = (fields = {}) => dispatch => {
+  dispatch({ type: IS_SPINNING, payload: true })
+  let str = urlEncoder(fields)
   backend
     .get("/branches" + str)
     .then(branches => {
-      if (branches.data.length) {
-        dispatch({ type: FETCH_BRANCH, payload: branches.data })
-      } else {
-        dispatch({ type: NORECORDS, payload: true })
-      }
+      dispatch({ type: FETCH_BRANCH, payload: branches.data })
+      dispatch({ type: NOT_SPINNING, payload: false })
     })
     .catch(err => {
-      if (err.response.data === "Unauthorized") {
-        dispatch({ type: UNAUTHORIZED, payload: err.response.data })
+      if (err) {
+        dispatch({ type: ERROR, payload: true })
+        dispatch({ type: NOT_SPINNING, payload: false })
       }
-      console.log(err.response.data)
     })
 }
-export const showBranches = (id, fields = []) => dispatch => {
-  let str = ""
-  if (fields.length) {
-    str = "?properties=" + fields.join(",")
-  }
-  console.log(str)
+
+export const showBranches = (id, fields = {}) => dispatch => {
+  startSpinningAction()
+  let str = urlEncoder(fields)
   backend
     .get(`/branches/${id}/${str}`)
     .then(branches => {
-      console.log(branches)
       dispatch({ type: SHOW_BRANCH, payload: branches.data })
+      stopSpinningAction()
     })
     .catch(err => {
-      console.log(err.response)
+      dispatch({ type: ERROR, payload: true })
+      stopSpinningAction()
     })
 }
 export const updateBranches = (id, values) => dispatch => {
-  console.log("im called")
-  console.log(id)
-  backend.put(`/branches/${id}`, values).then(branches => {
-    console.log(branches.data)
-    dispatch({ type: UPDATE_BRANCH, payload: branches.data })
-  })
+  startSpinningAction()
+  backend
+    .put(`/branches/${id}`, values)
+    .then(branches => {
+      dispatch({ type: UPDATE_BRANCH, payload: branches.data })
+      stopSpinningAction()
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: true })
+      stopSpinningAction()
+    })
 }
 export const deleteBranches = id => dispatch => {
-  console.log("im called")
-  backend.delete("/branches/" + id).then(branches => {
-    dispatch({ type: DELETE_BRANCH, payload: branches.data })
-  })
+  startSpinningAction()
+  backend
+    .delete("/branches/" + id)
+    .then(branches => {
+      dispatch({ type: DELETE_BRANCH, payload: branches.data })
+      stopSpinningAction()
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: true })
+      stopSpinningAction()
+    })
 }
 export const createBranches = (id, values) => dispatch => {
-  backend.post("/branches", values).then(branches => {
-    dispatch({ type: CREATE_BRANCH, payload: branches.data })
-    history.push(`/branches/${branches.data._id}/rooms/new`)
-    window.location.reload(false)
-  })
+  startSpinningAction()
+  backend
+    .post("/branches", values)
+    .then(branches => {
+      dispatch({ type: CREATE_BRANCH, payload: branches.data })
+      stopSpinningAction()
+      history.push(`/branches/${branches.data._id}/rooms/new`)
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: true })
+      stopSpinningAction()
+    })
 }
